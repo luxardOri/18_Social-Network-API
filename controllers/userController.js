@@ -6,8 +6,6 @@ module.exports = {
   // Get all users
   getAllUsers(req, res) {
     User.find()
-      .populate("thoughts")
-      .populate("friends")
       .then((users) => {
         return res.json(users);
       })
@@ -19,6 +17,8 @@ module.exports = {
   // Get a single user by id
   getUser(req, res) {
     User.findOne({ _id: req.params.userId })
+      .populate("thoughts")
+      .populate("friends")
       .then((users) => {
         return res.json(users);
       })
